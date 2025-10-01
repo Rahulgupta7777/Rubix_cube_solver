@@ -119,4 +119,76 @@ The Rubik’s Cube Solver & Trainer App blends a handy solver tool with an educa
 - After practice, they can solve independently.  
 - With continuous use, they improve speed, learn new methods, and engage with the cubing community.  
 
-This project combines technology (camera + solver algorithms) with education (flashcards, spaced repetition, interactive tutorials) into a unique app for cubing enthusiasts.
+
+## Potential Tech Stack
+
+This section outlines the core technologies and libraries that can be used to build the Rubik’s Cube Solver & Trainer App in React Native.
+
+### Core Framework
+- **React Native** – cross-platform mobile app development.
+- **Expo** (optional) – simplifies development, camera access, and testing.
+
+### Camera & Cube Scanning
+- **react-native-vision-camera** – modern, high-performance camera library with frame processing for color detection.
+- **expo-camera** – easier setup for Expo projects, suitable for prototypes.
+
+### Solver Engine
+- **cube.js** – JavaScript implementation of the Kociemba two-phase solving algorithm.
+- Alternative: **cube-solver** – other lightweight JS solvers.
+
+### Visualization
+- **react-native-svg** – for 2D cube diagrams and move animations.
+- **expo-three + react-three-fiber** – for optional 3D cube visualization.
+
+### UI Components
+- **react-native-paper** – clean Material Design UI components (cards, buttons, inputs).
+- Alternatives: **NativeBase** or **React Native Elements**.
+
+### Navigation
+- **React Navigation** – stack navigation for onboarding/solver screens, and bottom tabs for features like Learn, Community, Timer, and Settings.
+
+### State Management
+- **Zustand** – lightweight state management for cube state, quiz progress, and settings.
+- Or **React Context API** for simpler apps.
+
+### Animations & Interactions
+- **react-native-reanimated** – smooth animations for cube turns, transitions, and flashcard flips.
+
+### Timer & Practice Tools
+- **react-native-stopwatch-timer** – built-in solve timer with inspection countdown.
+- **Custom scramble generator** – generate WCA-standard scrambles.
+
+### Data & Storage
+- **AsyncStorage** – local storage for settings, progress, solve history.
+- **SQLite or WatermelonDB** – for more advanced offline data.
+- **Firebase** – for community features, leaderboards, and cloud sync.
+
+### Learning System (Flashcards & Repetition)
+- JSON-based flashcard data (algorithms, diagrams).
+- **SM-2 spaced repetition algorithm** implemented in JavaScript for quiz scheduling.
+
+---
+
+## Development Roadmap (High-Level)
+
+1. **MVP (Minimum Viable Product)**
+   - Camera scan for 3×3 cube.
+   - Instant solver with step-by-step moves.
+   - Basic Learn section with Beginner Method.
+   - Manual color input option.
+
+2. **Phase 2**
+   - Flashcards with spaced repetition.
+   - Timer with scramble generator.
+   - Algorithm library with animations.
+
+3. **Phase 3**
+   - Support for 2×2, 4×4, and other cubes.
+   - Community features (leaderboard, challenges).
+   - Advanced methods (CFOP, Roux, etc.).
+
+4. **Phase 4**
+   - 3D cube visualization.
+   - AR overlay for real-time solving guidance.
+   - Global multiplayer challenges.
+
