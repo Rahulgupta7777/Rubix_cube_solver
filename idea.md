@@ -126,7 +126,7 @@ This section outlines the core technologies and libraries that can be used to bu
 
 ### Core Framework
 - **React Native** – cross-platform mobile app development.
-- **Expo** (optional) – simplifies development, camera access, and testing.
+- **Expo** – simplifies development, camera access, and testing.
 
 ### Camera & Cube Scanning
 - **react-native-vision-camera** – modern, high-performance camera library with frame processing for color detection.
