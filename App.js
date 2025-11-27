@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { SettingsProvider } from './context';
 
 // Import screens
 import HomeScreen from './screens/HomeScreen.js';
@@ -30,50 +31,52 @@ const customDarkTheme = {
   },
 };
 
+const getTabIcon = (routeName, focused) => {
+  const icons = {
+    Home: focused ? 'home' : 'home-outline',
+    Solver: focused ? 'cube' : 'cube-outline',
+    Learn: focused ? 'book' : 'book-outline',
+    Algorithms: 'format-list-bulleted',
+    Flashcards: focused ? 'cards' : 'cards-outline',
+    Timer: focused ? 'timer' : 'timer-outline',
+    Settings: focused ? 'cog' : 'cog-outline',
+  };
+  return icons[routeName] || 'help';
+};
+
 export default function App() {
   return (
-    <PaperProvider theme={customDarkTheme}>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === 'Home') {
-                iconName = focused ? 'home' : 'home-outline';
-              } else if (route.name === 'Solver') {
-                iconName = focused ? 'cube' : 'cube-outline';
-              } else if (route.name === 'Learn') {
-                iconName = focused ? 'book' : 'book-outline';
-              } else if (route.name === 'Algorithms') {
-                iconName = focused ? 'format-list-bulleted' : 'format-list-bulleted';
-              } else if (route.name === 'Flashcards') {
-                iconName = focused ? 'cards' : 'cards-outline';
-              } else if (route.name === 'Timer') {
-                iconName = focused ? 'timer' : 'timer-outline';
-              } else if (route.name === 'Settings') {
-                iconName = focused ? 'cog' : 'cog-outline';
-              }
-
-              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: '#ffff99',
-            tabBarInactiveTintColor: '#666666',
-            tabBarStyle: {
-              backgroundColor: '#000000',
-              borderTopColor: '#333333',
-            },
-          })}
-        >
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Solver" component={SolverScreen} />
-          <Tab.Screen name="Learn" component={LearnScreen} />
-          <Tab.Screen name="Algorithms" component={AlgorithmLibraryScreen} />
-          <Tab.Screen name="Flashcards" component={FlashcardsScreen} />
-          <Tab.Screen name="Timer" component={TimerScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </PaperProvider>
+    <SettingsProvider>
+      <PaperProvider theme={customDarkTheme}>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => (
+                <MaterialCommunityIcons 
+                  name={getTabIcon(route.name, focused)} 
+                  size={size} 
+                  color={color} 
+                />
+              ),
+              tabBarActiveTintColor: '#ffff99',
+              tabBarInactiveTintColor: '#666666',
+              tabBarStyle: {
+                backgroundColor: '#000000',
+                borderTopColor: '#333333',
+              },
+              headerShown: false,
+            })}
+          >
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Solver" component={SolverScreen} />
+            <Tab.Screen name="Learn" component={LearnScreen} />
+            <Tab.Screen name="Algorithms" component={AlgorithmLibraryScreen} />
+            <Tab.Screen name="Flashcards" component={FlashcardsScreen} />
+            <Tab.Screen name="Timer" component={TimerScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </SettingsProvider>
   );
 }
