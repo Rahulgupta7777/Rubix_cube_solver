@@ -2,6 +2,7 @@ import ollAlgorithms from './ollAlgorithms';
 import pllAlgorithms from './pllAlgorithms';
 import f2lAlgorithms from './f2lAlgorithms';
 import tutorialTopics from './tutorials';
+import beginnerMethodSteps from './beginnerMethod';
 
 // Combine all algorithms
 export const allAlgorithms = [
@@ -25,4 +26,5 @@ export {
   pllAlgorithms,
   f2lAlgorithms,
   tutorialTopics,
+  beginnerMethodSteps,
 };
