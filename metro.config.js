@@ -2,8 +2,8 @@ const { getDefaultConfig } = require('expo/metro-config');
 
 const config = getDefaultConfig(__dirname);
 
-// Optimize Metro bundler
-config.resolver.platforms = ['ios', 'android', 'native', 'web'];
+// Optimize Metro bundler for mobile platforms only
+config.resolver.platforms = ['ios', 'android', 'native'];
 
 // Reduce memory usage
 config.transformer.minifierConfig = {
