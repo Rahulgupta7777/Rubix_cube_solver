@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-paper';
-import MoveNotation from './MoveNotation';
+import MoveNotation from '../cube/MoveNotation';
 
 const AlgorithmDisplay = ({ notation, title }) => {
   const moves = notation.replace(/[()]/g, '').split(/\s+/).filter(m => m);
