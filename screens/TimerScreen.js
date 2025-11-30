@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { List } from 'react-native-paper';
 import { AppHeader, ScreenContainer, ContentPadding } from '../components/common';
@@ -9,20 +9,20 @@ import {
   SolveHistoryItem,
   TimerStats
 } from '../components/timer';
-import { useTimer, useScramble } from '../hooks';
+import { useTimer, useScramble, useLocalStorage } from '../hooks';
 
 const TimerScreen = () => {
   const { time, isRunning, toggle, reset } = useTimer();
   const { scramble, newScramble } = useScramble();
-  const [solves, setSolves] = useState([]);
+  const [solves, setSolves] = useLocalStorage('timer_solves', []);
 
   const handleToggle = useCallback(() => {
     const finalTime = toggle();
     if (finalTime) {
-      setSolves(prev => [{ time: finalTime, scramble }, ...prev]);
+      setSolves(prev => [{ time: finalTime, scramble, date: new Date().toISOString() }, ...prev]);
       newScramble();
     }
-  }, [toggle, scramble, newScramble]);
+  }, [toggle, scramble, newScramble, setSolves]);
 
   const handleReset = () => {
     reset();

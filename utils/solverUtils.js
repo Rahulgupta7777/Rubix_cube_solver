@@ -1,19 +1,76 @@
-// Simple cube solver - Beginner's method steps
-// This provides solving hints rather than optimal solutions
+import solver from 'rubiks-cube-solver';
+import { COLORS } from './cubeUtils';
 
-export const getSolveSteps = (cubeState) => {
-  return [
-    { step: 1, name: 'White Cross', description: 'Form a cross on the white face' },
-    { step: 2, name: 'White Corners', description: 'Complete the first layer' },
-    { step: 3, name: 'Second Layer', description: 'Insert edge pieces' },
-    { step: 4, name: 'Yellow Cross', description: 'Orient yellow edges' },
-    { step: 5, name: 'Yellow Edges', description: 'Position yellow edges' },
-    { step: 6, name: 'Yellow Corners Position', description: 'Position corners' },
-    { step: 7, name: 'Yellow Corners Orient', description: 'Orient final corners' },
-  ];
+// Map internal colors to solver face characters
+// Standard order: U, R, F, D, L, B
+const COLOR_TO_FACE = {
+  [COLORS.WHITE]: 'U',
+  [COLORS.RED]: 'R',
+  [COLORS.GREEN]: 'F',
+  [COLORS.YELLOW]: 'D',
+  [COLORS.ORANGE]: 'L',
+  [COLORS.BLUE]: 'B',
 };
 
-// Common solving algorithms
+export const cubeStateToString = (cubeState) => {
+  // Order: U, R, F, D, L, B
+  const faces = ['U', 'R', 'F', 'D', 'L', 'B'];
+  let stateString = '';
+  
+  faces.forEach(face => {
+    cubeState[face].forEach(color => {
+      stateString += COLOR_TO_FACE[color] || 'U'; // Default to U if error
+    });
+  });
+  
+  return stateString;
+};
+
+export const solveCube = (cubeState) => {
+  try {
+    const stateString = cubeStateToString(cubeState);
+    const solution = solver(stateString);
+    // solution is usually a string like "R U R' U'"
+    return solution.split(' ').map((move, index) => ({
+      step: index + 1,
+      move: move,
+      description: getMoveDescription(move),
+    }));
+  } catch (error) {
+    console.error('Solver error:', error);
+    return null;
+  }
+};
+
+const getMoveDescription = (move) => {
+  const descriptions = {
+    "R": "Turn Right Face Clockwise",
+    "R'": "Turn Right Face Counter-Clockwise",
+    "R2": "Turn Right Face 180 degrees",
+    "L": "Turn Left Face Clockwise",
+    "L'": "Turn Left Face Counter-Clockwise",
+    "L2": "Turn Left Face 180 degrees",
+    "U": "Turn Top Face Clockwise",
+    "U'": "Turn Top Face Counter-Clockwise",
+    "U2": "Turn Top Face 180 degrees",
+    "D": "Turn Bottom Face Clockwise",
+    "D'": "Turn Bottom Face Counter-Clockwise",
+    "D2": "Turn Bottom Face 180 degrees",
+    "F": "Turn Front Face Clockwise",
+    "F'": "Turn Front Face Counter-Clockwise",
+    "F2": "Turn Front Face 180 degrees",
+    "B": "Turn Back Face Clockwise",
+    "B'": "Turn Back Face Counter-Clockwise",
+    "B2": "Turn Back Face 180 degrees",
+  };
+  return descriptions[move] || `Perform move ${move}`;
+};
+
+export const getSolveSteps = (cubeState) => {
+  // Wrapper for backward compatibility or more complex logic
+  return solveCube(cubeState);
+};
+
 export const solverAlgorithms = {
   insertEdgeRight: "U R U' R' U' F' U F",
   insertEdgeLeft: "U' L' U L U F U' F'",
@@ -24,4 +81,4 @@ export const solverAlgorithms = {
   jPermutation: "R U R' F' R U R' U' R' F R2 U' R'",
 };
 
-export default { getSolveSteps, solverAlgorithms };
+export default { getSolveSteps, solveCube, solverAlgorithms };
