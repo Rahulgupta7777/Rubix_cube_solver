@@ -1,42 +1,45 @@
-// Theme configuration for the app
 export const theme = {
   colors: {
-    primary: '#ffff99',
-    secondary: '#6200ea',
-    background: '#000000',
-    surface: '#1a1a1a',
-    surfaceVariant: '#333333',
-    text: '#ffffff',
-    textSecondary: '#cccccc',
-    textMuted: '#999999',
-    success: '#4caf50',
-    error: '#f44336',
-    warning: '#ff9800',
-    info: '#2196f3',
+    primary: '#6C63FF', // Vibrant Purple
+    accent: '#03DAC6', // Teal Accent
+    background: '#121212', // Deep Dark Background
+    surface: '#1E1E1E', // Slightly Lighter Surface
+    text: '#FFFFFF',
+    textSecondary: '#B0B0B0',
+    error: '#CF6679',
+    success: '#03DAC6',
+    warning: '#FFB74D',
+    onPrimary: '#FFFFFF',
+    onSurface: '#FFFFFF',
+    border: '#333333',
+    card: '#1E1E1E',
   },
   spacing: {
     xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
+    s: 8,
+    m: 16,
+    l: 24,
     xl: 32,
   },
-  borderRadius: {
-    sm: 4,
-    md: 8,
-    lg: 12,
-    xl: 16,
-    round: 9999,
-  },
+  roundness: 12,
   typography: {
-    sizes: {
-      xs: 11,
-      sm: 12,
-      md: 14,
-      lg: 16,
-      xl: 18,
-      xxl: 24,
-      display: 48,
+    h1: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: '#FFFFFF',
+    },
+    h2: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: '#FFFFFF',
+    },
+    body: {
+      fontSize: 16,
+      color: '#FFFFFF',
+    },
+    caption: {
+      fontSize: 12,
+      color: '#B0B0B0',
     },
   },
 };

@@ -1,17 +1,19 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { Title } from 'react-native-paper';
 import { 
   AppHeader, 
   ScreenContainer, 
   ContentPadding,
-  TutorialCard 
+  TutorialCard,
+  ActionCard
 } from '../components/common';
 import { tutorialTopics } from '../data';
 
-const LearnScreen = () => {
+const LearnScreen = ({ navigation }) => {
   const handleTopicPress = (topic) => {
     console.log(`${topic.title} pressed`);
+    // Navigate to specific tutorial logic here
   };
 
   return (
@@ -19,6 +21,22 @@ const LearnScreen = () => {
       <AppHeader title="Learn" />
       <ScrollView style={styles.content}>
         <ContentPadding>
+          <View style={styles.toolsSection}>
+            <Title style={styles.sectionTitle}>Tools</Title>
+            <ActionCard
+              icon="format-list-bulleted"
+              title="Algorithm Library"
+              description="Browse OLL, PLL, and F2L algorithms"
+              onPress={() => navigation.navigate('Algorithms')}
+            />
+            <ActionCard
+              icon="cards"
+              title="Flashcards"
+              description="Practice algorithms with spaced repetition"
+              onPress={() => navigation.navigate('Flashcards')}
+            />
+          </View>
+
           <Title style={styles.sectionTitle}>Tutorial Topics</Title>
           {tutorialTopics.map((topic) => (
             <TutorialCard
@@ -39,8 +57,12 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     marginBottom: 16,
+    marginTop: 8,
     color: '#ffffff',
     fontSize: 24,
+  },
+  toolsSection: {
+    marginBottom: 24,
   },
 });
 
