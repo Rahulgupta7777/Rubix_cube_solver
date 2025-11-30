@@ -103,13 +103,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: 'rgba(255,255,255,0.8)',
+    borderRadius: 4,
+    overflow: 'hidden',
   },
   gridCell: {
     width: '33.33%',
     height: '33.33%',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.5)',
+    borderColor: 'rgba(255,255,255,0.3)',
   },
   controls: {
     position: 'absolute',
@@ -138,6 +140,8 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: '#ccc',
   },
 });
 

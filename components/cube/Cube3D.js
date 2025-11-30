@@ -31,12 +31,12 @@ const Cube3D = ({ cubeState }) => {
           // Create materials for each face: +x, -x, +y, -y, +z, -z
           // In THREE.js, box faces are: right, left, top, bottom, front, back
           const materials = [
-            new THREE.MeshStandardMaterial({ color: '#000000' }), // +x (right)
-            new THREE.MeshStandardMaterial({ color: '#000000' }), // -x (left)
-            new THREE.MeshStandardMaterial({ color: '#000000' }), // +y (top)
-            new THREE.MeshStandardMaterial({ color: '#000000' }), // -y (bottom)
-            new THREE.MeshStandardMaterial({ color: '#000000' }), // +z (front)
-            new THREE.MeshStandardMaterial({ color: '#000000' }), // -z (back)
+            new THREE.MeshStandardMaterial({ color: '#000000', roughness: 0.2, metalness: 0.1 }), // +x (right)
+            new THREE.MeshStandardMaterial({ color: '#000000', roughness: 0.2, metalness: 0.1 }), // -x (left)
+            new THREE.MeshStandardMaterial({ color: '#000000', roughness: 0.2, metalness: 0.1 }), // +y (top)
+            new THREE.MeshStandardMaterial({ color: '#000000', roughness: 0.2, metalness: 0.1 }), // -y (bottom)
+            new THREE.MeshStandardMaterial({ color: '#000000', roughness: 0.2, metalness: 0.1 }), // +z (front)
+            new THREE.MeshStandardMaterial({ color: '#000000', roughness: 0.2, metalness: 0.1 }), // -z (back)
           ];
 
           // Apply colors based on position
@@ -121,12 +121,16 @@ const Cube3D = ({ cubeState }) => {
     cameraRef.current = camera;
 
     // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.8);
+    const pointLight = new THREE.PointLight(0xffffff, 1.0);
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
+
+    const pointLight2 = new THREE.PointLight(0xffffff, 0.5);
+    pointLight2.position.set(-10, -10, -10);
+    scene.add(pointLight2);
 
     // Create cubies
     createCubies(scene, cubeState);

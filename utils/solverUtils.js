@@ -1,4 +1,5 @@
 import Cube from 'cubejs';
+import 'cubejs/lib/solve.js';
 import { COLORS } from './cubeUtils';
 
 // Initialize cubejs (required for the solver to work)
