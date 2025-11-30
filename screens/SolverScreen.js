@@ -8,7 +8,7 @@ import {
   ActionCard, 
   InfoCard 
 } from '../components/common';
-import { CubePreview, CubeScanner, CubeNet, ColorPicker } from '../components/cube';
+import { CubePreview, CubeScanner, CubeNet, ColorPicker, Cube3D } from '../components/cube';
 import { createSolvedCube, COLORS } from '../utils/cubeUtils';
 import { solveCube } from '../utils/solverUtils';
 
@@ -75,7 +75,7 @@ const SolverScreen = () => {
                   iconColor="#6200ea"
                 />
               </View>
-              <CubePreview title="Cube Preview" />
+              <Cube3D cubeState={cubeState} />
             </>
           ) : (
             <View>
