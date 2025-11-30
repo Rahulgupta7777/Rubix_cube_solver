@@ -1,5 +1,8 @@
-import solver from 'rubiks-cube-solver';
+import Cube from 'cubejs';
 import { COLORS } from './cubeUtils';
+
+// Initialize cubejs (required for the solver to work)
+Cube.initSolver();
 
 // Map internal colors to solver face characters
 // Standard order: U, R, F, D, L, B
@@ -13,7 +16,8 @@ const COLOR_TO_FACE = {
 };
 
 export const cubeStateToString = (cubeState) => {
-  // Order: U, R, F, D, L, B
+  // cubejs expects a specific 54-character string format
+  // Order: U1-U9, R1-R9, F1-F9, D1-D9, L1-L9, B1-B9
   const faces = ['U', 'R', 'F', 'D', 'L', 'B'];
   let stateString = '';
   
@@ -29,9 +33,16 @@ export const cubeStateToString = (cubeState) => {
 export const solveCube = (cubeState) => {
   try {
     const stateString = cubeStateToString(cubeState);
-    const solution = solver(stateString);
-    // solution is usually a string like "R U R' U'"
-    return solution.split(' ').map((move, index) => ({
+    const cube = Cube.fromString(stateString);
+    const solution = cube.solve();
+    
+    if (!solution || solution.trim() === '') {
+      // Cube is already solved
+      return [{ step: 1, move: 'Solved!', description: 'Cube is already solved' }];
+    }
+    
+    // solution is a string like "R U R' U'"
+    return solution.trim().split(' ').filter(move => move).map((move, index) => ({
       step: index + 1,
       move: move,
       description: getMoveDescription(move),
