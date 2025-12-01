@@ -18,20 +18,35 @@ const TimerDisplay = ({ time, isRunning }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 40,
+    paddingVertical: 32,
+    paddingHorizontal: 24,
     marginBottom: 32,
-    borderRadius: 16,
+    borderRadius: 24,
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    justifyContent: 'center',
+    backgroundColor: '#1e1e1e',
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    minHeight: 200,
   },
   time: {
-    fontSize: 56,
+    fontSize: 64,
+    lineHeight: 80,
     color: '#ffffff',
-    fontWeight: 'bold',
+    fontWeight: '700',
     fontFamily: 'monospace',
+    letterSpacing: 2,
+    includeFontPadding: false,
+    textAlign: 'center',
   },
   running: {
     color: '#4caf50',
+    textShadowColor: 'rgba(76, 175, 80, 0.4)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
 });
 

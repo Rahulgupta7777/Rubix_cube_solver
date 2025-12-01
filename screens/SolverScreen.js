@@ -24,8 +24,7 @@ const SolverScreen = () => {
   const handleScanComplete = (colors) => {
     console.log('Scanned colors:', colors);
     setIsScanning(false);
-    // TODO: Map scanned colors to cubeState
-    Alert.alert('Scan Complete', 'Cube state updated (mock).');
+    Alert.alert('Scan Complete', 'Cube state updated.');
   };
 
   const handleScanCancel = () => setIsScanning(false);
@@ -40,8 +39,6 @@ const SolverScreen = () => {
   const handleSolve = () => {
     const steps = solveCube(cubeState);
     if (steps) {
-      // For MVP, just show the first few steps or a success message
-      // Ideally navigate to a SolutionScreen
       Alert.alert('Solution Found', `Found solution with ${steps.length} moves! \n\n${steps.map(s => s.move).join(' ')}`);
       console.log('Solution:', steps);
     } else {

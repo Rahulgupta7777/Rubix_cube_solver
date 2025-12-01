@@ -13,7 +13,6 @@ import { tutorialTopics } from '../data';
 const LearnScreen = ({ navigation }) => {
   const handleTopicPress = (topic) => {
     console.log(`${topic.title} pressed`);
-    // Navigate to specific tutorial logic here
   };
 
   return (
