@@ -67,8 +67,8 @@ npm run ios       # Run on iOS simulator/device
 
 ## Known Issues
 
-- **expo-three vulnerabilities:** Some build-time dependencies have known issues but do not affect runtime.
-- **3D Cube controls:** Touch/gesture rotation is not yet implemented; current 3D view is basic.
+- **expo-three vulnerabilities:** 
+- **3D Cube controls:** 
 - **Cube state checking:** Cube input is not auto-validated; ensure your scramble is accurate.
 
 ---
