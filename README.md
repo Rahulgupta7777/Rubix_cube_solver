@@ -56,19 +56,13 @@ npm run ios       # Run on iOS simulator/device
 
 ---
 
-## Troubleshooting
+## Troubleshooting Guide
 
 - Use `npm install --legacy-peer-deps` for dependency warnings.
 - Clear Metro cache with: `npx expo start -c`
 - Warnings about three.js loaders from expo-three can be ignored.
 - Ensure every cube color appears exactly nine times for solver input.
 
----
-
-## Known Issues
-
-- **expo-three vulnerabilities:** 
-- **3D Cube controls:** 
-- **Cube state checking:** Cube input is not auto-validated; ensure your scramble is accurate.
+--
 
 ---
